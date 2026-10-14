@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tax Swami website
 
-## Getting Started
+Next.js (App Router) + Tailwind CSS rebuild of the Tax Swami Framer site. Deployed on Vercel; every push to `main` redeploys.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where to edit things
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | File |
+| --- | --- |
+| Address, email, phones, social links | `src/lib/site.ts` |
+| Service categories (names, taglines, order) | `src/lib/site.ts` |
+| Every service page's write-up | `src/content/services.json` |
+| Notices in the top scrolling bar | `src/content/announcements.ts` |
+| FAQ questions and answers | `src/content/faqs.ts` |
+| Team cards on About | `src/content/team.ts` |
+| Colours and fonts | `src/app/globals.css` (`@theme` block) |
+| Income tax / GST maths | `src/lib/tax.ts` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Adding a service: add an entry to `src/content/services.json` with `category`, `slug`, `title`, `number` and `html`. It appears on its category page and gets its own page at `/<category>/<slug>`.
 
-## Learn More
+## Contact form email
 
-To learn more about Next.js, take a look at the following resources:
+The form posts to `/api/contact`, which emails enquiries through [Resend](https://resend.com).
+In Vercel → Project → Settings → Environment Variables add:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `RESEND_API_KEY` (required)
+- `CONTACT_TO` — inbox to receive enquiries (defaults to info@taxswami.com)
+- `CONTACT_FROM` — sender, e.g. `Tax Swami <hello@taxswami.com>` once the domain is verified in Resend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Until `RESEND_API_KEY` is set, submitting the form opens the visitor's email app with the details pre-filled.
 
-## Deploy on Vercel
+## Reference capture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`tools/capture/` and the manual "Capture Framer site" GitHub Action snapshot the original Framer site (text, layout, images, screenshots) into the `capture` branch. It only runs when started by hand from the Actions tab.
