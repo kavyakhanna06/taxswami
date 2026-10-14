@@ -34,17 +34,31 @@ for (const [label, vp] of [["desktop", { width: 1440, height: 900 }], ["mobile",
   await ctx.close();
 }
 
-// Interaction checks
+// Interaction checks (each guarded so one failure doesn't lose the rest)
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-await page.goto(NEW + "/income-tax-calculater", { waitUntil: "networkidle" });
-const it = await page.locator("text=Old Regime").locator("..").innerText();
-report.push(`income tax default (12L salary): ${it.replace(/\n/g, " ")}`);
-await page.goto(NEW + "/gst-calculator", { waitUntil: "networkidle" });
-report.push(`gst default: ${(await page.locator("text=Total including GST").locator("..").innerText()).replace(/\n/g, " ")}`);
-await page.goto(NEW + "/", { waitUntil: "networkidle" });
-await page.hover("text=Services >> nth=0");
-await page.waitForTimeout(300);
-await page.screenshot({ path: `${OUT}/shots/menu-services.desktop.jpg`, type: "jpeg", quality: 55 });
+const check = async (name, fn) => {
+  try { report.push(`${name}: ${await fn()}`); } catch (e) { report.push(`${name}: FAILED ${e.message.split("\n")[0]}`); }
+};
+await check("income tax default (12L salary)", async () => {
+  await page.goto(NEW + "/income-tax-calculater", { waitUntil: "networkidle" });
+  return (await page.getByText("Old vs New Regime", { exact: true }).locator("..").innerText()).replace(/\n/g, " ");
+});
+await check("gst default", async () => {
+  await page.goto(NEW + "/gst-calculator", { waitUntil: "networkidle" });
+  return (await page.getByText("Total including GST", { exact: true }).locator("..").innerText()).replace(/\n/g, " ");
+});
+await check("services menu", async () => {
+  await page.goto(NEW + "/", { waitUntil: "networkidle" });
+  await page.getByRole("button", { name: "Services" }).hover();
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: `${OUT}/shots/menu-services.desktop.jpg`, type: "jpeg", quality: 55 });
+  return "opened";
+});
+await check("contact form fallback", async () => {
+  await page.goto(NEW + "/contact", { waitUntil: "networkidle" });
+  const res = await page.request.post(NEW + "/api/contact", { data: { name: "Test", email: "test@example.com" } });
+  return `api status ${res.status()}`;
+});
 await browser.close();
 
 await writeFile(`${OUT}/report.txt`, report.join("\n") + "\n\nERRORS:\n" + (errors.join("\n") || "none") + "\n");
