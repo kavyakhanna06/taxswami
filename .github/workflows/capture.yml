@@ -1,0 +1,72 @@
+# One-off snapshot of the original Framer site, used as the reference for the Next.js rebuild.
+# Commits page outlines, images and screenshots to the `capture` branch (never to main).
+name: Capture Framer site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/capture.yml"
+      - "tools/capture/**"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      OUT: capture-out
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        working-directory: tools/capture
+        run: |
+          npm init -y >/dev/null
+          npm i playwright@1
+          npx playwright install --with-deps chromium
+
+      - name: Capture pages, DOM and screenshots
+        working-directory: tools/capture
+        run: OUT="$GITHUB_WORKSPACE/capture-out" node pull.mjs
+
+      - name: Build outline
+        working-directory: tools/capture
+        run: OUT="$GITHUB_WORKSPACE/capture-out" node outline.mjs
+
+      - name: Download every image and font the pages reference
+        run: |
+          mkdir -p capture-out/images
+          grep -ohE 'https://framerusercontent\.com/(images|assets)/[A-Za-z0-9._-]+' capture-out/html/*.html | sort -u > capture-out/images/urls.txt
+          while read -r u; do
+            f=$(basename "$u")
+            [ -f "capture-out/images/$f" ] || curl -sSfL -o "capture-out/images/$f" "$u" || echo "failed $u"
+          done < capture-out/images/urls.txt
+          ls capture-out/images | wc -l
+
+      - name: Shrink screenshots
+        run: |
+          sudo apt-get install -y imagemagick >/dev/null
+          mkdir -p capture-out/shots-small
+          for f in capture-out/shots/*.jpg; do
+            convert "$f" -resize 720x -quality 50 "capture-out/shots-small/$(basename "$f")"
+          done
+
+      - name: Commit to capture branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan capture
+          git rm -rf --cached . >/dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name capture-out -exec rm -rf {} +
+          rm -rf capture-out/img capture-out/shots
+          git add capture-out
+          git commit -qm "Framer site capture $(date -u +%F)"
+          git push -f origin capture
