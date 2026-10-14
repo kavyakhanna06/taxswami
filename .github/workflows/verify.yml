@@ -1,0 +1,47 @@
+# Manual check of the live site: every original URL responds, plus desktop/mobile screenshots
+# committed to the `verify` branch.
+name: Verify live site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/verify.yml"
+      - "tools/verify/**"
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        working-directory: tools/verify
+        run: |
+          npm init -y >/dev/null
+          npm i playwright@1
+          npx playwright install --with-deps chromium
+      - name: Wait for the deployment of this commit
+        run: sleep 90
+      - name: Run checks
+        working-directory: tools/verify
+        run: OUT="$GITHUB_WORKSPACE/verify-out" node verify.mjs
+      - name: Commit results to verify branch
+        run: |
+          sudo apt-get install -y imagemagick >/dev/null
+          for f in verify-out/shots/*.jpg; do convert "$f" -resize 720x -quality 50 "$f"; done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan verify
+          git rm -rf --cached . >/dev/null
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name verify-out -exec rm -rf {} +
+          git add verify-out
+          git commit -qm "Verify $(date -u +%FT%TZ)"
+          git push -f origin verify
