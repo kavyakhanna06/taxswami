@@ -40,7 +40,8 @@ function dumpDom() {
   const vis = (el, cs) => cs.display !== "none" && cs.visibility !== "hidden" && el.getBoundingClientRect().width > 0;
   const walk = (el, depth) => {
     const cs = getComputedStyle(el);
-    if (!vis(el, cs)) return;
+    if (cs.display === "none") return;
+    if (!vis(el, cs)) { for (const c of el.children) walk(c, depth + 1); return; }
     const r = el.getBoundingClientRect();
     const box = [Math.round(r.x), Math.round(r.y + scrollY), Math.round(r.width), Math.round(r.height)];
     const directText = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim();
@@ -78,13 +79,13 @@ for (const [label, vp] of [["desktop", { width: 1440, height: 900 }], ["mobile",
     const s = slug(p);
     try {
       const resp = await page.goto(ORIGIN + p, { waitUntil: "networkidle", timeout: 60000 });
-      if (label === "desktop") await writeFile(join(OUT, "html", s + ".html"), await resp.text());
+      if (label === "desktop" && !process.env.DOM_ONLY) await writeFile(join(OUT, "html", s + ".html"), await resp.text());
       await autoScroll(page);
       await page.waitForTimeout(800);
       const dom = await page.evaluate(dumpDom);
       dom.imgs.forEach((u) => imgUrls.add(u));
       await writeFile(join(OUT, "dom", `${s}.${label}.json`), JSON.stringify(dom));
-      await page.screenshot({ path: join(OUT, "shots", `${s}.${label}.jpg`), fullPage: true, type: "jpeg", quality: 55 });
+      if (!process.env.DOM_ONLY) await page.screenshot({ path: join(OUT, "shots", `${s}.${label}.jpg`), fullPage: true, type: "jpeg", quality: 55 });
       console.log(label, p, dom.height);
     } catch (e) {
       console.log("FAIL", label, p, e.message);
