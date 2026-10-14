@@ -38,7 +38,7 @@ export default function AboutPage() {
           <div className="mt-12 grid items-center gap-10 border-t border-line pt-10 md:grid-cols-[452px_1fr] md:gap-6">
             <div>
               <p className="inline-block bg-cream px-1 text-sm font-normal uppercase">Active proof</p>
-              <h2 className="mt-6 font-display text-[32px] leading-[1.1] md:mt-[230px] md:text-[40px]">Year-round support</h2>
+              <h2 className="mt-6 font-display font-medium text-[32px] leading-[1.1] md:mt-[230px] md:text-[40px]">Year-round support</h2>
               <p className="mt-4 text-base font-light">Questions do not wait for tax season. Neither do we.</p>
             </div>
             <AlwaysOn />
@@ -51,7 +51,7 @@ export default function AboutPage() {
         <Container className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <div className="max-w-[650px]">
             <p className="eyebrow">Meet our founder</p>
-            <h2 className="mt-6 font-display text-[40px] leading-[1.1] md:text-[54px]">
+            <h2 className="mt-6 font-display font-medium text-[40px] leading-[1.1] md:text-[54px]">
               Driven by purpose.
               <br />
               Guided by experience.
@@ -106,7 +106,7 @@ export default function AboutPage() {
       <section className="bg-ink py-16 text-cream md:py-[100px]">
         <Container>
           <p className="eyebrow">Our mission</p>
-          <h2 className="mt-6 font-display text-[32px] leading-[1.1] md:text-[40px]">
+          <h2 className="mt-6 font-display font-medium text-[32px] leading-[1.1] md:text-[40px]">
             One team. Multiple disciplines.
             <br />
             One clear direction.

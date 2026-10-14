@@ -9,7 +9,7 @@ export function RelatedServices({ services }: { services: Service[] }) {
   return (
     <section className="pt-16 md:pt-[100px]">
       <div className="mx-auto w-full max-w-[1250px] px-5 md:px-8 xl:px-0">
-        <h2 className="text-center font-display text-[28px]">Related Services</h2>
+        <h2 className="text-center font-display font-medium text-[28px]">Related Services</h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {services.slice(0, count).map((s, i) => (
             <ServiceCard key={s.slug} service={s} index={i} />

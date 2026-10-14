@@ -25,7 +25,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col gap-10 md:mt-20 md:flex-row md:items-end md:justify-between">
             <div>
               <PillButton />
-              <h1 className="mt-3 max-w-[540px] font-display text-[48px] leading-[1.1] md:text-[74px]">
+              <h1 className="mt-3 max-w-[600px] font-display font-normal text-[48px] leading-[1.1] md:text-[74px]">
                 Tax and legal advisory partner.
               </h1>
             </div>
@@ -48,7 +48,7 @@ export default function Home() {
                     ))}
                   </div>
                   <p className="mt-2 flex items-end gap-2">
-                    <span className="font-display text-[40px] leading-none">2K+</span>
+                    <span className="font-display font-medium text-[40px] leading-none">2K+</span>
                     <span className="w-[80px] text-xs leading-tight font-light">Happy clients and business</span>
                   </p>
                 </div>
@@ -140,7 +140,7 @@ export default function Home() {
             aside="Clients value clear communication, orderly processes, and advice that connects today’s work with the next decision."
           />
           <figure className="mt-14 rounded-[28px] bg-ink px-6 py-10 text-cream md:rounded-[40px] md:px-10 md:py-11">
-            <blockquote className="mt-10 font-display text-[28px] leading-[1.15] md:text-[40px]">
+            <blockquote className="mt-10 font-display font-medium text-[28px] leading-[1.15] md:text-[40px]">
               Tax Swami made our tax process simple and stress-free. Their expert guidance and support gave us complete confidence.
             </blockquote>
             <figcaption className="mt-16 md:mt-[100px]">

@@ -27,7 +27,7 @@ export function StorySection() {
               <p className="text-sm font-normal uppercase">Our Story</p>
               <p className="text-sm font-normal uppercase md:hidden">● Since 2019</p>
             </div>
-            <h2 className="mt-8 font-display text-[40px] leading-[1.1] md:text-[54px]">How we work differently</h2>
+            <h2 className="mt-8 font-display font-medium text-[40px] leading-[1.1] md:text-[54px]">How we work differently</h2>
             <p className="mt-4 text-base leading-[1.2] font-light">
               CA Vibha Gupta, Founder of Tax Swami and Proprietor of Vibha Gupta &amp; Co., established the firm in 2019 with a vision to provide reliable and professional consultancy services.
             </p>

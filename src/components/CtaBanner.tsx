@@ -18,7 +18,7 @@ export function CtaBanner({ eyebrow = "Let's talk", withSteps = false }: { eyebr
           </div>
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="font-display text-[40px] leading-[1.1] md:text-[54px]">
+              <h2 className="font-display font-medium text-[40px] leading-[1.1] md:text-[54px]">
                 Your Finances.
                 <br />
                 Our Expertise.

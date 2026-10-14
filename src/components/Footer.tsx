@@ -94,7 +94,7 @@ export function Footer() {
 
       <div className="mt-14 flex w-max animate-marquee whitespace-nowrap" aria-hidden>
         {Array.from({ length: 6 }).map((_, i) => (
-          <span key={i} className="pr-[0.4em] font-display text-[96px] leading-[0.7] md:text-[200px]">
+          <span key={i} className="pr-[0.4em] font-display font-normal text-[96px] leading-[0.7] md:text-[200px]">
             Tax Swami
           </span>
         ))}

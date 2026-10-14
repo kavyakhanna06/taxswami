@@ -27,7 +27,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <div className="max-w-[820px]">
               <p className="eyebrow">Direct line / Open file</p>
-              <h1 className="mt-4 font-display text-[40px] leading-[1.1] md:text-[54px]">
+              <h1 className="mt-4 font-display font-medium text-[40px] leading-[1.1] md:text-[54px]">
                 Complex tax matters. Clear, confident decisions.
               </h1>
               <p className="mt-6 max-w-[820px] text-base leading-[1.2] font-light">
@@ -39,7 +39,7 @@ export default function ContactPage() {
                 <span>Direct line</span>
                 <span className="flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-cream" /> Open</span>
               </div>
-              <p className="mt-6 font-display text-[32px] leading-[1.1]">Talk to a real person, not a portal.</p>
+              <p className="mt-6 font-display font-medium text-[32px] leading-[1.1]">Talk to a real person, not a portal.</p>
               <p className="mt-5 text-sm font-light">We reply within one business day and confirm the next clear step.</p>
               <div className="mt-5 space-y-2.5">
                 <a href={`mailto:${site.email}`} className="block rounded-lg bg-cream py-1.5 text-center text-sm font-light text-ink hover:bg-white">{site.email}</a>
@@ -67,7 +67,7 @@ export default function ContactPage() {
           <div className="grid gap-10 rounded-[28px] bg-ink p-5 text-cream md:grid-cols-[1fr_1.15fr] md:rounded-[24px] md:p-7">
             <div className="md:pl-7 md:pt-2">
               <p className="eyebrow">Open a file / Start here</p>
-              <h2 className="mt-4 font-display text-[32px] leading-[1.15] md:text-[40px]">Give us the shape of the problem.</h2>
+              <h2 className="mt-4 font-display font-medium text-[32px] leading-[1.15] md:text-[40px]">Give us the shape of the problem.</h2>
               <p className="mt-5 max-w-[300px] text-base leading-[1.2] font-light">No polished brief required. A few honest details are enough.</p>
             </div>
             <ContactForm />

@@ -51,12 +51,12 @@ export default async function ServicePage({ params }: PageProps<"/[category]/[se
             <div className="flex items-start gap-6">
               <div className="hidden w-[120px] shrink-0 overflow-hidden rounded-xl border border-ink text-center sm:block">
                 <p className="bg-sand py-1.5 text-xs font-normal uppercase">Tax Swami</p>
-                <p className="bg-ink py-3 font-display text-[40px] leading-none text-cream">{service.number}</p>
+                <p className="bg-ink py-3 font-display font-medium text-[40px] leading-none text-cream">{service.number}</p>
                 <p className="bg-sand py-1.5 text-xs font-normal uppercase">Service</p>
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase">Your service dossier</p>
-                <h1 className="mt-2 max-w-[560px] font-display text-[36px] leading-[1.1] md:text-[54px]">{service.title}</h1>
+                <h1 className="mt-2 max-w-[560px] font-display font-medium text-[36px] leading-[1.1] md:text-[54px]">{service.title}</h1>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ export default async function ServicePage({ params }: PageProps<"/[category]/[se
             <article className="prose-service max-w-[760px]" dangerouslySetInnerHTML={{ __html: service.html }} />
             <aside className="rounded-[24px] bg-cream p-6 lg:sticky lg:top-24 lg:w-[334px] lg:shrink-0">
               <p className="text-xs font-light opacity-70">How the work moves</p>
-              <p className="mt-2 font-display text-[28px] leading-tight">Three calm moves.</p>
+              <p className="mt-2 font-display font-medium text-[28px] leading-tight">Three calm moves.</p>
               <p className="mt-2 text-sm font-light">A clear handoff from first conversation to year-round support.</p>
               <ol className="mt-6 divide-y divide-ink/15">
                 {moves.map((m, i) => (

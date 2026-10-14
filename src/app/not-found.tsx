@@ -6,7 +6,7 @@ export default function NotFound() {
     <section className="py-24 md:py-32">
       <Container className="text-center">
         <p className="eyebrow">404</p>
-        <h1 className="mt-4 font-display text-[44px] leading-tight md:text-[64px]">This page doesn&apos;t exist.</h1>
+        <h1 className="mt-4 font-display font-medium text-[44px] leading-tight md:text-[64px]">This page doesn&apos;t exist.</h1>
         <p className="mx-auto mt-4 max-w-[420px] text-base font-light">
           The link may be old, or the page may have moved. Start from home or tell us what you were looking for.
         </p>

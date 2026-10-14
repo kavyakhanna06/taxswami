@@ -11,7 +11,7 @@ export function Faq() {
       <Container className="grid gap-10 md:grid-cols-[340px_1fr] md:gap-[70px]">
         <div>
           <p className="eyebrow">FAQ</p>
-          <h2 className="mt-4 font-display text-[32px] leading-[1.1] md:text-[40px]">Money questions, decoded.</h2>
+          <h2 className="mt-4 font-display font-medium text-[32px] leading-[1.1] md:text-[40px]">Money questions, decoded.</h2>
           <p className="mt-5 max-w-[326px] text-base leading-[1.2] font-light">
             Straight answers on pricing, process, notice support, and getting started - without the accounting fog.
           </p>

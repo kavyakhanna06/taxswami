@@ -51,7 +51,7 @@ export function Header() {
   return (
     <header ref={navRef} className="sticky top-0 z-40 border-b border-line/70 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex h-[60px] w-full max-w-[1300px] items-center justify-between px-5 md:px-8 xl:px-0">
-        <Link href="/" className="font-display text-2xl font-medium tracking-tight">
+        <Link href="/" className="font-display font-medium text-2xl font-medium tracking-tight">
           Tax Swami
         </Link>
 

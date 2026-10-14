@@ -49,7 +49,7 @@ await check("gst default", async () => {
 });
 await check("services menu", async () => {
   await page.goto(NEW + "/", { waitUntil: "networkidle" });
-  await page.getByRole("button", { name: "Services" }).hover();
+  await page.getByRole("button", { name: "Services", exact: true }).first().hover();
   await page.waitForTimeout(300);
   await page.screenshot({ path: `${OUT}/shots/menu-services.desktop.jpg`, type: "jpeg", quality: 55 });
   return "opened";

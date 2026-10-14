@@ -69,7 +69,7 @@ export function SectionIntro({
         <p className="eyebrow">{eyebrow}</p>
         {title && (
           <h2
-            className={`mt-4 font-display leading-[1.1] ${titleSize === "lg" ? "text-[40px] md:text-[54px]" : "text-[32px] md:text-[40px]"}`}
+            className={`mt-4 font-display font-medium leading-[1.1] ${titleSize === "lg" ? "text-[40px] md:text-[54px]" : "text-[32px] md:text-[40px]"}`}
           >
             {title}
           </h2>

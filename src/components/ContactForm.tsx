@@ -55,7 +55,7 @@ export function ContactForm() {
   if (status.kind === "sent") {
     return (
       <div className="flex min-h-[320px] flex-col items-center justify-center rounded-[24px] bg-cream p-8 text-center text-ink">
-        <p className="font-display text-[28px]">Thank you.</p>
+        <p className="font-display font-medium text-[28px]">Thank you.</p>
         <p className="mt-3 max-w-[360px] text-base font-light">
           {status.message ?? "We’ve got your note. A real person will reply within one business day."}
         </p>

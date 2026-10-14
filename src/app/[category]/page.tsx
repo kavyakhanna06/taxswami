@@ -23,7 +23,7 @@ export default async function CategoryPage({ params }: PageProps<"/[category]">)
   return (
     <section className="pb-20 pt-14 md:pb-[100px] md:pt-[60px]">
       <Container>
-        <h1 className="text-center font-display text-[44px] leading-[1.05] md:text-[74px]">{c.title}</h1>
+        <h1 className="text-center font-display font-medium text-[44px] leading-[1.05] md:text-[74px]">{c.title}</h1>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
           {c.services.map((s, i) => (
             <ServiceCard key={s.slug} service={s} index={i} />
