@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.Bi-D_2cA.mjs";function t(e,t){return{description:`Made with Framer`,favicon:`https://framerusercontent.com/assets/PdRiN6wNXGzqEbdR13xXRt9oxE.png`,robots:`max-image-preview:large`,socialImage:`https://framerusercontent.com/assets/ZKRl0K5unUQGHACu98cAyHvGjfY.png`,title:`Tax Swami`}}function n(){return(n=e((()=>{})))()}export{t as n,n as t};
+//# sourceMappingURL=shared-lib.oiShWF0G.mjs.map
