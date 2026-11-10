@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "outputDirectory": "dist",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/income-tax-calculater/",
+      "destination": "/income-tax-calculator/",
+      "permanent": true
+    }
+  ]
 }
