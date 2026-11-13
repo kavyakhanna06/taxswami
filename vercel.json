@@ -7,6 +7,21 @@
       "source": "/income-tax-calculater/",
       "destination": "/income-tax-calculator/",
       "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/itr-filing/",
+      "destination": "/filing-returns/itr-filing/",
+      "permanent": true
     }
   ]
 }
