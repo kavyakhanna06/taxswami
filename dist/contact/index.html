@@ -357,7 +357,10 @@
       })
       .catch(function(){
         delete form.dataset.tsSending;if(btn)btn.style.opacity="";
-        alert("Sorry, your message couldn't be sent. Please email us at info@taxswami.com.");
+        var body=FIELDS.map(function(n){return n+": "+(data[n]||"");}).join("\n");
+        if(confirm("Sorry, your message couldn't be sent right now. Open your email app to send it to info@taxswami.com instead?")){
+          location.href="mailto:info@taxswami.com?subject="+encodeURIComponent("Enquiry from taxswami.com")+"&body="+encodeURIComponent(body);
+        }
       });
   },true);
 })();
